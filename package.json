@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.1",
+    "jquery": "^3.6.1"
+  },
+  "name": "comp2112-f2o22-week5",
+  "version": "1.0.0",
+  "description": "Demo app for Week-5",
+  "main": "index.js",
+  "repository": "https://github.com/jshn16/COMP-2112-Week-5.git>",
+  "author": "jashan <jashannoor2001@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jquery": "^3.5.14"
+  }
+}

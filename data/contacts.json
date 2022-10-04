@@ -1,0 +1,19 @@
+{
+    "ContactList": [
+        {
+            "FullName": "Jashan",
+            "ContactNumber": "7087656056",
+            "EmailAddress": "Jashan@gmail.com"
+        },
+        {
+            "FullName": "Simar",
+            "ContactNumber": "9814008667",
+            "EmailAddress": "Simar@gmail.com"
+        },
+        {
+            "FullName": "Sehaj",
+            "ContactNumber": "9915528609",
+            "EmailAddress": "Sehaj@gmail.com"
+        }
+    ]
+}
