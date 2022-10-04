@@ -7,7 +7,7 @@
      *
      * @param {any[]} contactList
      */
-    function SaveData(contactList: any[]):void {
+    function SaveData(contactList: any[]): void {
         let count = 0
         for (let contacts of contactList) {
 
@@ -39,11 +39,80 @@
         return ContactArray;
     }
 
+    //creating loadHeader function
+
+    function loadHeader(): void {
+        $.get("./views/components/header.html", function (html_data) {
+
+
+            //vanilla method
+            // document.getElementsByTagName("header")[0].innerHTML=html_data;
+
+            // with JQuery
+            $("header").html(html_data)
+
+            // $("#homePage").addClass("active")
+
+            // let navLinks = document.querySelectorAll("li>a.nav-link");
+            // for(const link of navLinks as HTMLAnchorElement){
+            //     console.log(link.href);
+            // }
+
+            // let navLinks=$("li>a.nav-link")
+            // for(const navLink of navLinks){
+            //     console.log(navLink.prop("href"))
+            // }
+
+            // $("li>a.nav-link").each(function(navLink){
+            //     console.log($(this).prop("href") )
+            // })
+
+            switch(document.title){
+                case "Home":
+                    $("#homePage").addClass("active")
+                    break;
+
+                case "Projects":
+                    $("#projectPage").addClass("active")
+                    break;
+                    
+                case "Services":
+                    $("#servicePage").addClass("active")
+                    break;
+
+                case "About":
+                    $("#aboutPage").addClass("active")
+                    break;
+
+                case "Contact":
+                    $("#contactPage").addClass("active")
+                    break;
+            }
+
+
+        })
+    }
+
+
+    //creating function to load footer
+    function loadFooter(): void {
+        $.get("./views/components/footer.html", function (footer_data) {
+            $("footer").html(footer_data)
+        })
+    }
+
 
 
     function Start() {
 
         console.log("App Started")
+
+        //calling loadHeader function
+        loadHeader();
+
+        //calling loadFooter function
+        loadFooter()
+
         $.getJSON("./data/contacts.json", (event) => {
 
             //geting data
@@ -56,7 +125,7 @@
             let ContactArray = LoadContactListData()
 
             for (const data of ContactArray) {
-                console.log(data.toString())
+                // console.log(data.toString())
             }
 
 
