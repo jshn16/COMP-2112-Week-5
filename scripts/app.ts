@@ -45,51 +45,16 @@
         $.get("./views/components/header.html", function (html_data) {
 
 
-            //vanilla method
-            // document.getElementsByTagName("header")[0].innerHTML=html_data;
-
-            // with JQuery
-            $("header").html(html_data)
-
-            // $("#homePage").addClass("active")
-
-            // let navLinks = document.querySelectorAll("li>a.nav-link");
-            // for(const link of navLinks as HTMLAnchorElement){
-            //     console.log(link.href);
-            // }
-
-            // let navLinks=$("li>a.nav-link")
-            // for(const navLink of navLinks){
-            //     console.log(navLink.prop("href"))
-            // }
-
-            // $("li>a.nav-link").each(function(navLink){
-            //     console.log($(this).prop("href") )
-            // })
-
-            switch(document.title){
-                case "Home":
-                    $("#homePage").addClass("active")
-                    break;
-
-                case "Projects":
-                    $("#projectPage").addClass("active")
-                    break;
-                    
-                case "Services":
-                    $("#servicePage").addClass("active")
-                    break;
-
-                case "About":
-                    $("#aboutPage").addClass("active")
-                    break;
-
-                case "Contact":
-                    $("#contactPage").addClass("active")
-                    break;
-            }
-
-
+            $("header").html(html_data);
+            $("li>a").on("click",function(){
+                let title=$(this).prop("id") as string;
+                document.title=title.substring(0,1).toUpperCase()+title.substring(1)
+                
+                
+                loadContent()
+                
+            })
+            
         })
     }
 
@@ -101,37 +66,53 @@
         })
     }
 
+    function loadContent(): void {
+
+        switch (document.title) {
+            case "Home":
+                $.get("./views/content/home.html", function (html_data) {
+                    $("main").html(html_data)
+                })
+                break;
+
+            case "Project":
+                $.get("./views/content/projects.html", function (html_data) {
+                    $("main").html(html_data)
+                })
+                break;
+
+            case "Service":
+                $.get("./views/content/services.html", function (html_data) {
+                    $("main").html(html_data)
+                })
+                break;
+
+            case "About":
+                $.get("./views/content/about.html", function (html_data) {
+                    $("main").html(html_data)
+                })
+                break;
+
+            case "Contact":
+                $.get("./views/content/contact.html", function (html_data) {
+                    $("main").html(html_data)
+                })
+                break;
+        }
+
+    }
 
 
     function Start() {
 
-        console.log("App Started")
-
-        //calling loadHeader function
+        
+document.title="Home"
+        loadContent()
         loadHeader();
 
-        //calling loadFooter function
         loadFooter()
 
-        $.getJSON("./data/contacts.json", (event) => {
 
-            //geting data
-            let contactList: any[] = event.ContactList;
-
-            //load data
-            SaveData(contactList)
-
-            //   console.log(contact.toString());
-            let ContactArray = LoadContactListData()
-
-            for (const data of ContactArray) {
-                // console.log(data.toString())
-            }
-
-
-        })
-
-        // localStorage.setItem("0","Jashan");
     }
 
     window.addEventListener("load", Start);
