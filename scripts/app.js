@@ -39,6 +39,7 @@
      *
      */
     function loadHeader() {
+        console.log("loading header");
         $.get("./views/components/header.html", function (html_data) {
             $("header").html(html_data);
             $("li>a#Home").addClass("active");
@@ -63,6 +64,7 @@
      *
      */
     function loadContent() {
+        console.log("loading content");
         let contentLink = document.title.toLowerCase();
         $.get("./views/content/" + contentLink + ".html", function (html_data) {
             $("main").html(html_data);
@@ -74,6 +76,7 @@
      *
      */
     function loadFooter() {
+        console.log("loading footer");
         $.get("./views/components/footer.html", function (footer_data) {
             $("footer").html(footer_data);
         });

@@ -46,6 +46,9 @@
      *
      */
     function loadHeader(): void {
+
+        console.log("loading header")
+
         $.get("./views/components/header.html", function (html_data) {
 
 
@@ -85,6 +88,7 @@
      */
     function loadContent(): void {
 
+        console.log("loading content")
         let contentLink = document.title.toLowerCase();
 
         $.get("./views/content/" + contentLink + ".html", function (html_data) {
@@ -100,6 +104,7 @@
      *
      */
     function loadFooter(): void {
+        console.log("loading footer")
         $.get("./views/components/footer.html", function (footer_data) {
             $("footer").html(footer_data)
         })
