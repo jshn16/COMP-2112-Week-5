@@ -34,53 +34,54 @@
         return ContactArray;
     }
     //creating loadHeader function
+    /**
+     *this method loads the header and the page content
+     *
+     */
     function loadHeader() {
         $.get("./views/components/header.html", function (html_data) {
             $("header").html(html_data);
-            $("li>a").on("click", function () {
-                let title = $(this).prop("id");
-                document.title = title.substring(0, 1).toUpperCase() + title.substring(1);
+            $("li>a#Home").addClass("active");
+            $("li>a").on("click", function (event) {
+                event.preventDefault();
+                //change title
+                document.title = $(this).prop("id");
+                //change URL
+                history.pushState({}, "", "/" + document.title);
+                //remove the active class from each list item
+                $("li>a").each(function () {
+                    $(this).removeClass("active");
+                });
+                //Activate the current link 
+                $("li>a#" + document.title).addClass("active");
                 loadContent();
             });
         });
     }
+    /**
+     *this method injects the page content
+     *
+     */
+    function loadContent() {
+        let contentLink = document.title.toLowerCase();
+        $.get("./views/content/" + contentLink + ".html", function (html_data) {
+            $("main").html(html_data);
+        });
+    }
     //creating function to load footer
+    /**
+     *This method loads and injects the footer content
+     *
+     */
     function loadFooter() {
         $.get("./views/components/footer.html", function (footer_data) {
             $("footer").html(footer_data);
         });
     }
-    function loadContent() {
-        switch (document.title) {
-            case "Home":
-                $.get("./views/content/home.html", function (html_data) {
-                    $("main").html(html_data);
-                });
-                break;
-            case "Project":
-                $.get("./views/content/projects.html", function (html_data) {
-                    $("main").html(html_data);
-                });
-                break;
-            case "Service":
-                $.get("./views/content/services.html", function (html_data) {
-                    $("main").html(html_data);
-                });
-                break;
-            case "About":
-                $.get("./views/content/about.html", function (html_data) {
-                    $("main").html(html_data);
-                });
-                break;
-            case "Contact":
-                $.get("./views/content/contact.html", function (html_data) {
-                    $("main").html(html_data);
-                });
-                break;
-        }
-    }
     function Start() {
         document.title = "Home";
+        //change URL
+        history.pushState({}, "", "/Home");
         loadContent();
         loadHeader();
         loadFooter();
